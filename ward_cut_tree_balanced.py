@@ -162,7 +162,8 @@ if __name__ == "__main__":
     # Perform standard clustering by cutting the tree at a certain level (where the resulting number of clusters is 20)
     standard_cut_cluster_id = cut_tree(Z, n_clusters=[20])
     print("Type of the standard clustering result: %s" % type(standard_cut_cluster_id))
-    print("Shape of the standard clustering result (one cluster id per data sample): %s" % str(standard_cut_cluster_id.shape))
+    print("Shape of the standard clustering result (one cluster id per data sample): %s" % 
+          str(standard_cut_cluster_id.shape))
     print("First 10 rows of the standard clustering result (one cluster id per sample):")
     print(str(standard_cut_cluster_id[0:10].reshape(10)) + " ...")
     standard_cluster_values, standard_cluster_counts = np.unique(standard_cut_cluster_id, return_counts=True)
@@ -179,13 +180,15 @@ if __name__ == "__main__":
     # Perform a balanced cut tree of the linkage matrix
     [balanced_cut_cluster_id, balanced_cut_cluster_level] = ward_cut_tree_balanced(Z, 100, verbose=False)
     print("Type of the balanced clustering result: %s" % type(balanced_cut_cluster_id))
-    print("Shape of the balanced clustering result (one cluster id per data sample): %s" % str(balanced_cut_cluster_id.shape))
+    print("Shape of the balanced clustering result (one cluster id per data sample): %s" % 
+          str(balanced_cut_cluster_id.shape))
     print("First 10 rows of the balanced clustering result (one cluster id per sample):")
     print(str(balanced_cut_cluster_id[0:10]) + " ...")
     print('')
     
     print("Type of the balanced clustering result (level): %s" % type(balanced_cut_cluster_level))
-    print("Shape of the balanced clustering result (level) (one string per data sample): %s" % str(balanced_cut_cluster_level.shape))
+    print("Shape of the balanced clustering result (level) (one string per data sample): %s" % 
+          str(balanced_cut_cluster_level.shape))
     print("First 10 rows of the balanced clustering result (level) (one string per sample):")
     print(str(balanced_cut_cluster_level[0:10]) + " ...")
     print('')
