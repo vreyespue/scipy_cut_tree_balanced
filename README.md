@@ -24,28 +24,28 @@ $ python3 ward_cut_tree_balanced.py
 
 By running the example script you should run commands and get printed outputs similar to the following.
 
-First, a numpy array of 1000 rows x 4 columns is randomly generated using a gamma distribution. Note that we perform such a random sampling from a gamma distribution so that the resulting standard clustering is unbalanced (see below). 
+First, a numpy array of 100 rows x 4 columns is randomly generated using a gamma distribution. Note that we perform such a random sampling from a gamma distribution so that the resulting standard clustering is unbalanced (see below). Similar results are obtained when varying the random seed.
 
 ```
-    np.random.seed(0)
-    X = gamma.rvs(0.1, size=4000).reshape((1000,4))
+    np.random.seed(4)
+    X = gamma.rvs(0.1, size=400).reshape((100,4))
 ```
 
 In order to check the validity of the input data, the type, shape and the first 10 rows are printed.
 
 ```
 Type of the input data sample: <class 'numpy.ndarray'>
-Shape of the input data sample: (1000, 4)
+Shape of the input data sample: (100, 4)
 First 10 rows of the input data:
-[[2.47883654e-03 6.33094538e-03 1.86260732e-04 2.57422326e-04]
- [1.01239570e+00 9.67706807e-02 3.49803426e-03 3.27181353e-12]
- [1.14147734e-17 8.14087142e-02 1.69626003e+00 4.38049146e-04]
- [5.35683767e-10 3.66502184e-09 1.49776236e-03 1.67946048e-06]
- [3.90013783e-04 5.48556892e-18 7.38232987e-03 6.47944035e-01]
- [3.60648715e-05 2.73060529e-02 1.73675725e-02 1.69862447e-07]
- [9.75005924e-06 3.63285055e-03 1.58088814e-07 1.41205691e-02]
- [4.86132311e-04 1.03071920e-08 1.48326873e-02 8.61877379e-08]
- [1.54769645e+00 1.56690862e+00 3.27266064e-06 5.18768523e-06]]
+[[1.28573793e-03 8.12672961e-06 1.26520704e-03 2.07729574e-03]
+ [1.16397414e-01 2.06534197e-03 1.91044478e-02 5.35127859e-01]
+ [5.81563428e-02 5.92302950e-06 1.90433024e-02 2.87155777e-02]
+ [3.98932109e-08 5.37862343e-02 4.38562255e-02 1.27557329e-04]
+ [3.57028885e-04 2.88945299e-05 3.40388733e-05 9.90278888e-06]
+ [3.91282036e-06 4.61803593e-02 2.75652111e-08 1.66504104e-09]
+ [2.60630428e-10 3.89770028e-04 8.52159994e-03 5.83321506e-09]
+ [6.37325763e-10 3.41859809e-04 4.51815091e-02 2.83600476e-06]
+ [1.14654357e-03 1.12808821e-02 1.61202749e-04 1.56459197e-11]]
 ```
 
 Next, the linkage matrix is computed by using the ward method, and a standard tree cut is performed (with a specific number of output clusters = 20). 
@@ -55,50 +55,49 @@ Next, the linkage matrix is computed by using the ward method, and a standard tr
     standard_cut_cluster_id = cut_tree(Z, n_clusters=[20])
 ```
 
-As shown below, the output is a numpy array of 1000 elements, assigning one cluster ID to each input vector (of 4 dimensions, see above). Note that the ID of the resulting clusters go from 0 to 19 in this case. The resulting clustering is unbalanced, i.e. containing a big cluster (where the number of data samples is 506), and many small clusters (each containing very few data samples, one of them containing a single data sample). As result, the range of cluster sizes goes from 1 to 506, showing a standard deviation of 108.71 data samples.
+As shown below, the output is a numpy array of 100 elements, assigning one cluster ID to each input vector (of 4 dimensions, see above). Note that the ID of the resulting clusters go from 0 to 19 in this case. The resulting clustering is unbalanced, i.e. containing a big cluster (where the number of data samples is 48), and many small clusters (each containing very few data samples, 9 of them containing a single data sample). As result, the range of cluster sizes goes from 1 to 48, showing a standard deviation of 10.17 data samples.
 
 ```
 Type of the standard clustering result: <class 'numpy.ndarray'>
-Shape of the standard clustering result (one cluster id per data sample): (1000, 1)
+Shape of the standard clustering result (one cluster id per data sample): (100, 1)
 First 10 rows of the standard clustering result (one cluster id per sample):
-[0 1 2 0 3 0 0 0 4 0] ...
+[0 1 0 0 0 0 0 0 0 2] ...
 Total number of resulting clusters = 20
 For each resulting cluster: Cluster ID
 [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
 For each resulting cluster: Count of data samples
-[506  18  15  84   2  80  40  54  31 100   8   3  18  19   5   5   3   5   3   1]
-Count of data samples per cluster: mean = 50, max = 506, min = 1, std = 108.71
+[48  4  1  2 10  8  1  6  2  2  1  1  1  1  3  1  4  2  1  1]
+Count of data samples per cluster: mean = 5, max = 48, min = 1, std = 10.17
 ```
 
-A more balanced clustering is then attempted by using the balanced ward tree method, in which the maximum number of data samples within each cluster is set to 100. 
+A more balanced clustering is then attempted by using the balanced ward tree method, in which the maximum number of data samples within each cluster is set to 10. 
 
 ```
-    [balanced_cut_cluster_id, balanced_cut_cluster_level] = ward_cut_tree_balanced(Z, 100, verbose=False)
+    [balanced_cut_cluster_id, balanced_cut_cluster_level] = ward_cut_tree_balanced(Z, 10, verbose=False)
 ```
 
-We get two results from the new function: (1) a list of integers containing for each input sample its corresponding cluster id, and (2) a list of strings containing for each input sample its corresponding cluster tree level (see above section for further information). Note that the ID of the resulting clusters go from 1 to 20 in this case, i.e. the number of resulting clusters (20) is identical to the previous one. Importantly, the resulting clustering is more balanced than the standard one (for an equal number of resulting clusters), since the range of cluster sizes goes from 7 to 100, showing a standard deviation of 29.08 data samples.
+We get two results from the new function: (1) a list of integers containing for each input sample its corresponding cluster id, and (2) a list of strings containing for each input sample its corresponding cluster tree level (see above section for further information). Note that the ID of the resulting clusters go from 1 to 20 in this case, i.e. the number of resulting clusters (20) is identical to the previous one. Importantly, the resulting clustering is more balanced than the standard one (for an equal number of resulting clusters), since the range of cluster sizes goes from 1 to 10, showing a standard deviation of 2.68 data samples.
 
 ```
 Type of the balanced clustering result: <class 'numpy.ndarray'>
-Shape of the balanced clustering result (one cluster id per data sample): (1000,)
+Shape of the balanced clustering result (one cluster id per data sample): (100,)
 First 10 rows of the balanced clustering result (one cluster id per sample):
-[15  3  1 18  6 11 14 12  3 18] ...
+[19  4 10 12 20 12 14  9 15  2] ...
 
 Type of the balanced clustering result (level): <class 'numpy.ndarray'>
-Shape of the balanced clustering result (level) (one string per data sample): (1000,)
+Shape of the balanced clustering result (level) (one string per data sample): (100,)
 First 10 rows of the balanced clustering result (level) (one string per sample):
-['0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0' '0.0.0.1' '0.1'
- '0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0' '0.0.0.0.0.0.1'
- '0.0.0.0.0.0.0.0.0.0.0.1' '0.0.0.0.0.0.0.0.0.0.0.0.0.0.1'
- '0.0.0.0.0.0.0.0.0.0.0.0.1' '0.0.0.1'
- '0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0'] ...
+['0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0' '0.0.0.1' '0.0.0.0.0.0.0.0.1'
+ '0.0.0.0.0.0.0.0.0.0.1' '0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1'
+ '0.0.0.0.0.0.0.0.0.0.1' '0.0.0.0.0.0.0.0.0.0.0.0.1' '0.0.0.0.0.0.0.1'
+ '0.0.0.0.0.0.0.0.0.0.0.0.0.1' '0.0.1.0'] ...
 
 Total number of resulting clusters = 20
 For each resulting cluster: Cluster ID
 [ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20]
 For each resulting cluster: Count of data samples
-[ 39  93  69  29  80  84 100  65  67  63  43  47  34  23  27  15  13   7  89  13]
-Count of data samples per cluster: mean = 50, max = 100, min = 7, std = 29.08
+[ 2 10  2  7  7 10  6  8  8  3  4  4  3  3  3  1  4  3  4  8]
+Count of data samples per cluster: mean = 5, max = 10, min = 1, std = 2.68
 ```
 
 In conclusion, here we describe and implement a method which generates (for a similar number of resulting clusters) a more balanced outcome, i.e. building clusters of less variable size.

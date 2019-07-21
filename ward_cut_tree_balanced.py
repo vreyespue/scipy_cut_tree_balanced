@@ -145,10 +145,10 @@ def ward_cut_tree_balanced(linkage_matrix_Z, max_cluster_size, verbose=False):
 if __name__ == "__main__":
     
     # Initialize the random seed
-    np.random.seed(0)
-    # Create a input matrix containing 1000 data samples with 4 dimensions
+    np.random.seed(14)
+    # Create a input matrix containing 100 data samples with 4 dimensions
     # Note: random sample from gamma distribution in order to obtain an unbalanced clustering (see below)
-    X = gamma.rvs(0.1, size=4000).reshape((1000,4))
+    X = gamma.rvs(0.1, size=400).reshape((100,4))
     print('')
     print("Type of the input data sample: %s" % type(X))
     print("Shape of the input data sample: %s" % str(X.shape))
@@ -158,8 +158,8 @@ if __name__ == "__main__":
     
     # Compute the linkage matrix using the scipy ward() method
     Z = ward(X)
-
-    # Perform standard clustering by cutting the tree at a certain level (where the resulting number of clusters is 20)
+    
+    # Perform standard clustering by cutting the tree at a certain level (where the nr of clusters is set to 20)
     standard_cut_cluster_id = cut_tree(Z, n_clusters=[20])
     print("Type of the standard clustering result: %s" % type(standard_cut_cluster_id))
     print("Shape of the standard clustering result (one cluster id per data sample): %s" % 
@@ -178,7 +178,7 @@ if __name__ == "__main__":
     print('')
 
     # Perform a balanced cut tree of the linkage matrix
-    [balanced_cut_cluster_id, balanced_cut_cluster_level] = ward_cut_tree_balanced(Z, 100, verbose=False)
+    [balanced_cut_cluster_id, balanced_cut_cluster_level] = ward_cut_tree_balanced(Z, 10, verbose=False)
     print("Type of the balanced clustering result: %s" % type(balanced_cut_cluster_id))
     print("Shape of the balanced clustering result (one cluster id per data sample): %s" % 
           str(balanced_cut_cluster_id.shape))
