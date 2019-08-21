@@ -80,7 +80,7 @@ def ward_cut_tree_balanced(linkage_matrix_Z, max_cluster_size, verbose=False):
             # For each group id within the current tree level
             for curr_elem_pos in range(values.size):
             
-                # If it is a valid group id (i.e. not yes marked as processed with -1) ...
+                # If it is a valid group id (i.e. not yet marked as processed with -1) ...
                 # Note: data samples which were alredy included in a valid cluster id (i.e. at a higher tree level) 
                 # are marked with the group id -1 (see below)
                 if (values[curr_elem_pos] >= 0):
