@@ -31,9 +31,9 @@ def ward_cut_tree_balanced(linkage_matrix_Z, max_cluster_size, verbose=False):
           vec_cluster_id: one-dimensional numpy array of integers containing for each input sample its corresponding 
              cluster id. The cluster id is an integer which is higher for deeper tree levels.
 
-          vec_last_cluster_level: one-dimensional numpy array of strings containing for each input sample its 
-             corresponding cluster tree level, i.e. a string of '0's and '1's separated by '.' Note that the cluster 
-             level is longer for deeper tree levels, being 0 the root cluster, 0.0 and 0.1 its offspring, and so on.
+          vec_last_cluster_level: one-dimensional numpy array of arrays containing for each input sample its 
+             corresponding cluster tree level, i.e. a sequence of 0s and 1s. Note that the cluster level is longer for 
+             deeper tree levels, being 0 the root cluster, [0, 0] and [0, 1] its offspring, and so on.
 
     """
     try:
@@ -58,8 +58,9 @@ def ward_cut_tree_balanced(linkage_matrix_Z, max_cluster_size, verbose=False):
         
         # Initialize the resulting cluster level vector (containing for each data sample its 
         # corresponding cluster tree level, i.e. a string of '0's and '1's separated by '.')
-        vec_last_cluster_level = np.array(['0' for _ in range(full_cut.shape[1])], dtype=object)
-        
+        vec_last_cluster_level = np.empty((full_cut.shape[1],), dtype=object)
+        for i in range(full_cut.shape[1]): vec_last_cluster_level[i] = np.array([0],int)
+
         # Scan the full cut matrix from the last column (root tree level) to the first column (leaves tree level)
         if verbose:
             print("Note about columns: within the full cut tree, the column " + str(full_cut.shape[1]-1) +
@@ -105,11 +106,10 @@ def ward_cut_tree_balanced(linkage_matrix_Z, max_cluster_size, verbose=False):
                         
                         # If the number of descendants is > 1 (i.e. if the curr_elem has at least one brother)
                         if (offspring_values.shape[0] > 1):
-                            # Select the position of the current value (i.e. 0 or 1) and append it to 
-                            # the cluster level
+                            # Select the position of the current value (i.e. 0 or 1) and append it to the cluster level
                             offspring_elem_pos = np.where(offspring_values==selected_curr_value)[0][0]
-                            vec_last_cluster_level[selected_curr_elems] = \
-                                vec_last_cluster_level[selected_curr_elems] + '.' + str(offspring_elem_pos)
+                            for i in selected_curr_elems[0]:
+                                vec_last_cluster_level[i] = np.hstack((vec_last_cluster_level[i], offspring_elem_pos))
 
                     # Major step #2: Populate the resulting vector of cluster ids for each data sample, 
                     # and mark them as already clustered (-1)
@@ -179,7 +179,7 @@ if __name__ == "__main__":
 
     # Perform a balanced cut tree of the linkage matrix
     [balanced_cut_cluster_id, balanced_cut_cluster_level] = ward_cut_tree_balanced(Z, 10, verbose=False)
-    print("Type of the balanced clustering result: %s" % type(balanced_cut_cluster_id))
+    print("Type of the balanced clustering result (id): %s" % type(balanced_cut_cluster_id))
     print("Shape of the balanced clustering result (one cluster id per data sample): %s" % 
           str(balanced_cut_cluster_id.shape))
     print("First 10 rows of the balanced clustering result (one cluster id per sample):")
@@ -187,9 +187,9 @@ if __name__ == "__main__":
     print('')
     
     print("Type of the balanced clustering result (level): %s" % type(balanced_cut_cluster_level))
-    print("Shape of the balanced clustering result (level) (one string per data sample): %s" % 
+    print("Shape of the balanced clustering result (level) (one array per data sample): %s" % 
           str(balanced_cut_cluster_level.shape))
-    print("First 10 rows of the balanced clustering result (level) (one string per sample):")
+    print("First 10 rows of the balanced clustering result (level) (one array per sample):")
     print(str(balanced_cut_cluster_level[0:10]) + " ...")
     print('')
         
