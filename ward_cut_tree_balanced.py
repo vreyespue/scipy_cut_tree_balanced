@@ -135,8 +135,8 @@ def ward_cut_tree_balanced(linkage_matrix_Z, max_cluster_size, verbose=False):
                         last_cluster_id = last_cluster_id + 1
                     
         # Return the resulting clustering array (containing for each row in input_data_x_sample its 
-        # corresponding cluster id)
-        return [vec_cluster_id, vec_last_cluster_level]
+        # corresponding cluster id) and the clustering level
+        return vec_cluster_id, vec_last_cluster_level
 
     except AssertionError:
         print("Please use a max_cluster_size >= 1")
