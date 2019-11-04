@@ -33,7 +33,8 @@ def ward_cut_tree_balanced(linkage_matrix_Z, max_cluster_size, verbose=False):
 
           vec_last_cluster_level: one-dimensional numpy array of arrays containing for each input sample its 
              corresponding cluster tree level, i.e. a sequence of 0s and 1s. Note that the cluster level is longer for 
-             deeper tree levels, being 0 the root cluster, [0, 0] and [0, 1] its offspring, and so on.
+             deeper tree levels, being 0 the root cluster, [0, 0] and [0, 1] its offspring, and so on. Also note that 
+             in each cluster splitting, the label 0 denotes the bigger cluster, while the label 1 denotes the smallest.
 
     """
     try:
@@ -100,16 +101,20 @@ def ward_cut_tree_balanced(linkage_matrix_Z, max_cluster_size, verbose=False):
                         selected_ancestor_value = full_cut[selected_curr_elems[0][0],curr_column+1]
                         selected_ancestor_elems = np.where(full_cut[:,curr_column+1]==selected_ancestor_value)
                         
-                        # Compute the values and counts of the offspring (i.e. curr_elem + brothers)
+                        # Compute the values and counts of the offspring (i.e. curr_elem + brothers) and sort them
+                        # by their count (so that the biggest cluster gets the offspring_elem_label = 0, see below)
                         offspring_values, offspring_counts = np.unique(full_cut[selected_ancestor_elems,curr_column], 
                                                                        return_counts=True)
+                        count_sort_ind = np.argsort(-offspring_counts)
+                        offspring_values = offspring_values[count_sort_ind]
+                        offspring_counts = offspring_counts[count_sort_ind]
                         
                         # If the number of descendants is > 1 (i.e. if the curr_elem has at least one brother)
                         if (offspring_values.shape[0] > 1):
                             # Select the position of the current value (i.e. 0 or 1) and append it to the cluster level
-                            offspring_elem_pos = np.where(offspring_values==selected_curr_value)[0][0]
+                            offspring_elem_label = np.where(offspring_values==selected_curr_value)[0][0]
                             for i in selected_curr_elems[0]:
-                                vec_last_cluster_level[i] = np.hstack((vec_last_cluster_level[i], offspring_elem_pos))
+                                vec_last_cluster_level[i] = np.hstack((vec_last_cluster_level[i], offspring_elem_label))
 
                     # Major step #2: Populate the resulting vector of cluster ids for each data sample, 
                     # and mark them as already clustered (-1)

@@ -91,10 +91,10 @@ First 10 rows of the balanced clustering result (one cluster id per sample):
 Type of the balanced clustering result (level): <class 'numpy.ndarray'>
 Shape of the balanced clustering result (level) (one array per data sample): (100,)
 First 10 rows of the balanced clustering result (level) (one array per sample):
-[array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+[array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
  array([0, 0, 0, 1]) array([0, 0, 0, 0, 0, 0, 0, 0, 1])
  array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
- array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
+ array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
  array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
  array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
  array([0, 0, 0, 0, 0, 0, 0, 1])
