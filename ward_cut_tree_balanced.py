@@ -33,7 +33,7 @@ def ward_cut_tree_balanced(linkage_matrix_Z, max_cluster_size, verbose=False):
 
           vec_last_cluster_level: one-dimensional numpy array of arrays containing for each input sample its 
              corresponding cluster tree level, i.e. a sequence of 0s and 1s. Note that the cluster level is longer for 
-             deeper tree levels, being 0 the root cluster, [0, 0] and [0, 1] its offspring, and so on. Also note that 
+             deeper tree levels, being [0] the root cluster, [0, 0] and [0, 1] its offspring, and so on. Also note that 
              in each cluster splitting, the label 0 denotes the bigger cluster, while the label 1 denotes the smallest.
 
     """

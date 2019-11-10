@@ -10,7 +10,7 @@ Since all output clusters contain no more than a given maximum number of samples
 
 The function returns two results: 
 1. List of integers containing for each input sample its corresponding cluster id. The cluster id is an integer which is higher for deeper tree levels.
-2. List of strings containing for each input sample its corresponding cluster tree level, i.e. a string of '0's and '1's separated by '.' Note that the cluster level is longer for deeper tree levels, being 0 the root cluster, 0.0 and 0.1 its offspring, and so on.
+2. List of integer arrays containing for each input sample its corresponding cluster tree level, i.e. a sequence of 0s and 1s. Note that the cluster level is longer for deeper tree levels, being [0] the root cluster, [0, 0] and [0, 1] its offspring, and so on. Also note that in each cluster splitting, the label 0 denotes the bigger cluster, while the label 1 denotes the smallest.
 
 # Dependencies and Example Script
 
