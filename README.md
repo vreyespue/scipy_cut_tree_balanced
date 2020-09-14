@@ -1,6 +1,6 @@
-# Balanced Cut Tree Method for Ward Hierarchical Clustering
+# Balanced Cut Tree Method for Hierarchical Clustering
 
-This repo contains a small Python function that performs a balanced clustering by using the linkage matrix from a Ward histogram. It builds upon the SciPy and NumPy libraries.
+This repo contains a small Python function that performs a balanced cut tree of a SciPy linkage matrix built using any linkage method (e.g. 'ward'). It builds upon the SciPy and NumPy libraries.
 
 The initial problem was the following: if you perform a standard cut on a tree (i.e. the result from a hierarchical clustering), probably you will end up having a few big clusters (where the number of data samples is high), and many small clusters (each containing very few data samples). Thus, the resulting clustering is unbalanced, i.e. it contains clusters of very variable size.
 

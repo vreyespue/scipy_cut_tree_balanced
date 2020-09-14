@@ -3,8 +3,8 @@ from scipy.stats import gamma
 import numpy as np
 
 def cut_tree_balanced(linkage_matrix_Z, max_cluster_size, verbose=False):
-    """This function performs a balanced clustering by using the linkage matrix from a Ward histogram. 
-       It builds upon the scipy and numpy libraries. 
+    """This function performs a balanced cut tree of a SciPy linkage matrix built using any linkage method 
+       (e.g. 'ward'). It builds upon the SciPy and Numpy libraries. 
        
        The function looks recursively along the hierarchical tree, from the root (single cluster gathering 
        all the samples) to the leaves (i.e. the clusters with only one sample), retrieving the biggest 
