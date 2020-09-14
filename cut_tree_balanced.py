@@ -2,7 +2,7 @@ from scipy.cluster.hierarchy import ward, cut_tree
 from scipy.stats import gamma
 import numpy as np
 
-def ward_cut_tree_balanced(linkage_matrix_Z, max_cluster_size, verbose=False):
+def cut_tree_balanced(linkage_matrix_Z, max_cluster_size, verbose=False):
     """This function performs a balanced clustering by using the linkage matrix from a Ward histogram. 
        It builds upon the scipy and numpy libraries. 
        
@@ -183,7 +183,7 @@ if __name__ == "__main__":
     print('')
 
     # Perform a balanced cut tree of the linkage matrix
-    [balanced_cut_cluster_id, balanced_cut_cluster_level] = ward_cut_tree_balanced(Z, 10, verbose=False)
+    [balanced_cut_cluster_id, balanced_cut_cluster_level] = cut_tree_balanced(Z, 10, verbose=False)
     print("Type of the balanced clustering result (id): %s" % type(balanced_cut_cluster_id))
     print("Shape of the balanced clustering result (one cluster id per data sample): %s" % 
           str(balanced_cut_cluster_id.shape))

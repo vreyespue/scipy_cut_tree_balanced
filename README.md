@@ -19,7 +19,7 @@ Before running the example script, please ensure you have installed the scipy an
 In order to run the example script you can use the following command.
 
 ```
-$ python3 ward_cut_tree_balanced.py
+$ python3 cut_tree_balanced.py
 ```
 
 By running the example script you should run commands and get printed outputs similar to the following.
@@ -77,7 +77,7 @@ The following figure illustrates visually the resulting clustering by using the 
 A more balanced clustering is then attempted by using the balanced ward tree method, in which the maximum number of data samples within each cluster is set to 10. 
 
 ```
-    [balanced_cut_cluster_id, balanced_cut_cluster_level] = ward_cut_tree_balanced(Z, 10, verbose=False)
+    [balanced_cut_cluster_id, balanced_cut_cluster_level] = cut_tree_balanced(Z, 10, verbose=False)
 ```
 
 We get two results from the new function: (1) a list of integers containing for each input sample its corresponding cluster id, and (2) a list of strings containing for each input sample its corresponding cluster tree level (see above section for further information). Note that the ID of the resulting clusters go from 1 to 20 in this case, i.e. the number of resulting clusters (20) is identical to the previous one. Importantly, the resulting clustering is more balanced than the standard one (for an equal number of resulting clusters), since the range of cluster sizes goes from 1 to 10, showing a standard deviation of 2.68 data samples.
