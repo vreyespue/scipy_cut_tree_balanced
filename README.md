@@ -116,8 +116,9 @@ In conclusion, here we describe and implement a method which generates (for a si
 
 # Related Work
 
-To our knowledge there are several implemented methods following a similar idea, i.e. performing a tree cut in which the resulting clusters are at different tree levels.
+There are several implemented methods following the same or a similar idea, i.e. performing a tree cut in which the resulting clusters are at different tree levels.
 
+- Implementation of the same method within the [scikit-network package](https://scikit-network.readthedocs.io/en/latest/reference/hierarchy.html#sknetwork.hierarchy.cut_balanced) (see source code of the [cut_balanced function](https://scikit-network.readthedocs.io/en/latest/_modules/sknetwork/hierarchy/postprocess.html#cut_balanced)).
 - The CRAN R package [dynamicTreeCut](https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/BranchCutting/) (see GitHub [repo](https://github.com/cran/dynamicTreeCut) and the [paper](https://academic.oup.com/bioinformatics/article/24/5/719/200751)) implements novel dynamic branch cutting methods for detecting clusters in a dendrogram depending on their shape.
 - Translation of the [dynamicTreeCut](https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/BranchCutting/) method [to Python](https://github.com/kylessmith/dynamicTreeCut).
 - The web based [MLCut](https://bivi.co/visualisation/mlcut) tool (see GitHub [repo](https://github.com/than8/MLCut) and the [paper](https://research-repository.st-andrews.ac.uk/handle/10023/9518)) provides interactive methods to cut the branches of the tree at multiple levels.
