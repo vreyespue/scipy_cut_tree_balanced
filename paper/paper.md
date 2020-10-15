@@ -1,4 +1,4 @@
-# balancedCut
+# cutTreeBalanced
 
 Cutting linkage graphs (i.e. dendrograms) to achieve hierarchical clustering with balanced size.
 
