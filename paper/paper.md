@@ -1,4 +1,9 @@
-# cutTreeBalanced
+---
+title: "cutTreeBalanced: Balanced cuts for dendrograms"
+output: pdf_document
+csl: ieee.csl
+bibliography: references.bib
+---
 
 Cutting linkage graphs (i.e. dendrograms) to achieve hierarchical clustering with balanced size.
 
@@ -10,6 +15,10 @@ Hierarchical (a.k.a. agglomerative) linkage techniques are common in a wide rang
 ## Introduction
 
 text with a citation [@langfelder2008defining]
+
+Now I reference the abstract:
+
+see [Abstract](#abstract).
 
 ## Results
 
