@@ -10,10 +10,12 @@ Cutting dendrograms to achieve hierarchical clustering with balanced cluster siz
 
 # Abstract
 
-Hierarchical (a.k.a. agglomerative) linkage techniques are common in a wide range of fields such as economics, bioinformatics, (`some fields`). The output of these techniques are dendrograms, which are directed acylic graphs (`note: not just DAGs - they have tree structure`) that define the linkage between input data. Generating clusters requires some method of cutting the dendrogram to separate groups of points from each other. Many existing cutting techniques, such as a straight cut along a constant height, lead to clusters with highly imbalanced sizes. This paper presents and demonstrates balancedCut for Python - a method of cutting dendrograms with balanced cluster sizes.
+Hierarchical clustering techniques are common in a wide range of fields such as economics, bioinformatics, (`some fields`). The output of these techniques are dendrograms, which are directed acylic graphs (`note: not just DAGs - they have tree structure`) that define the linkages between input data that define clusters. Generating clusters requires some method of cutting the dendrogram to separate groups of points from each other, usuaully proceeding in bottom-up i.e. agglomerative, or top-down i.e. divisive directions. Many existing cutting techniques, such as a straight cut along a constant height, lead to clusters with highly imbalanced sizes. In certain cases, such as with high-dimensional data, these clusters do not accurately represent the underlying structure of the data. This paper presents and demonstrates balancedCut for Python - a fast and simple method of cutting dendrograms that results in balanced cluster sizes.
 
 
 # Introduction
+
+
 
 - What is hierarchical clustering, dendrogram, tree cut.
 
