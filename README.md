@@ -8,7 +8,8 @@ The proposed function looks recursively along the hierarchical tree, from the ro
 
 Since all output clusters contain no more than a given maximum number of samples, the resulting clustering is considered to be more balanced than a standard tree cut. Note however that the number of samples per cluster might still have a considerable variability, since the splitting of a big cluster can result in sub-clusters with very variable number of samples. This variability should be smaller as the given maximum of samples per cluster is closer to 1 (being the variability equal to 0 when the maximum is at its limit, i.e. 1).
 
-The function returns two results: 
+The function returns two results:
+
 1. List of integers containing for each input sample its corresponding cluster id. The cluster id is an integer which is higher for deeper tree levels.
 2. List of integer arrays containing for each input sample its corresponding cluster tree level, i.e. a sequence of 0s and 1s. Note that the cluster level is longer for deeper tree levels, being [0] the root cluster, [0, 0] and [0, 1] its offspring, and so on. Also note that in each cluster splitting, the label 0 denotes the bigger cluster, while the label 1 denotes the smallest.
 
@@ -48,7 +49,7 @@ First 10 rows of the input data:
  [1.14654357e-03 1.12808821e-02 1.61202749e-04 1.56459197e-11]]
 ```
 
-Next, the linkage matrix is computed by using the ward method, and a standard tree cut is performed (with a specific number of output clusters = 20). 
+Next, the linkage matrix is computed by using the ward method, and a standard tree cut is performed (with a specific number of output clusters = 20).
 
 ```
     Z = ward(X)
@@ -72,9 +73,9 @@ Count of data samples per cluster: mean = 5, max = 48, min = 1, std = 10.17
 
 The following figure illustrates visually the resulting clustering by using the standard tree cut. The black line shows the height at which the cut (i.e. pruning) is performed (which is identical for all clusters). The resulting cluster IDs are depicted within the black squares (i.e. numbers in white represent the obtained cluster IDs). As result, the cluster ID 0 contains 48 elements (almost half of the data samples), an issue which we try to address with our proposed method.
 
-![Dendrogram Standard Cut)](dendrogram_1_standard_cut.png?raw=true "Dendrogram Standard Cut")
+![Dendrogram Standard Cut)](doc/dendrogram_1_standard_cut.png?raw=true "Dendrogram Standard Cut")
 
-A more balanced clustering is then attempted by using the balanced ward tree method, in which the maximum number of data samples within each cluster is set to 10. 
+A more balanced clustering is then attempted by using the balanced ward tree method, in which the maximum number of data samples within each cluster is set to 10.
 
 ```
     [balanced_cut_cluster_id, balanced_cut_cluster_level] = cut_tree_balanced(Z, 10, verbose=False)
@@ -110,7 +111,7 @@ Count of data samples per cluster: mean = 5, max = 10, min = 1, std = 2.68
 
 The following figure illustrates visually the resulting balanced clustering. Again, the resulting cluster IDs are depicted within the black squares (i.e. numbers in white represent the obtained cluster IDs). Now the tree level at which the clusters are selected (i.e. pruned) is different for each cluster ID, since the cluster search method is not only driven by the heigth (i.e. distance between clusters), but also by the number of samples contained within the clusters. Note for instance that cluster ID 1 is smaller (2 data samples) than cluster ID 17 (4 data samples), although the heigth at which it was pruned is much higher. As result, all clusters contain less or equal than a number of specific data samples (in this case 10), and therefore their size is less variable.
 
-![Dendrogram Balanced Cut)](dendrogram_2_balanced_cut.png?raw=true "Dendrogram Balanced Cut")
+![Dendrogram Balanced Cut)](doc/dendrogram_2_balanced_cut.png?raw=true "Dendrogram Balanced Cut")
 
 In conclusion, here we describe and implement a method which generates (for a similar number of resulting clusters) a more balanced outcome, i.e. building clusters of less variable size.
 
@@ -122,4 +123,3 @@ There are several implemented methods following the same or a similar idea, i.e.
 - The CRAN R package [dynamicTreeCut](https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/BranchCutting/) (see GitHub [repo](https://github.com/cran/dynamicTreeCut) and the [paper](https://academic.oup.com/bioinformatics/article/24/5/719/200751)) implements novel dynamic branch cutting methods for detecting clusters in a dendrogram depending on their shape.
 - Translation of the [dynamicTreeCut](https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/BranchCutting/) method [to Python](https://github.com/kylessmith/dynamicTreeCut).
 - The web based [MLCut](https://bivi.co/visualisation/mlcut) tool (see GitHub [repo](https://github.com/than8/MLCut) and the [paper](https://research-repository.st-andrews.ac.uk/handle/10023/9518)) provides interactive methods to cut the branches of the tree at multiple levels.
-
