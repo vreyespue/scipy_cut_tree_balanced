@@ -12,6 +12,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/vreyespue/scipy_cut_tree_balanced",
+    download_url="https://github.com/vreyespue/scipy_cut_tree_balanced/archive/v_0_1.tar.gz",
     packages=setuptools.find_packages(),
     install_requires=["scipy", "numpy", "pytest"],
     classifiers=[
