@@ -52,9 +52,7 @@ if __name__ == "__main__":
     print("")
 
     # Perform a balanced cut tree of the linkage matrix
-    [balanced_cut_cluster_id, balanced_cut_cluster_level] = cut_tree_balanced(
-        Z, 10, verbose=False
-    )
+    [balanced_cut_cluster_id, balanced_cut_cluster_level] = cut_tree_balanced(Z, 10)
     print(
         "Type of the balanced clustering result (id): %s"
         % type(balanced_cut_cluster_id)
