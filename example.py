@@ -1,6 +1,6 @@
-from scipy.cluster.hierarchy import cut_tree, ward
-from scipy.stats import gamma
 from scipy_cut_tree_balanced import cut_tree_balanced
+from scipy.cluster.hierarchy import cut_tree, linkage
+from scipy.stats import gamma
 import numpy as np
 
 
@@ -18,8 +18,8 @@ if __name__ == "__main__":
     print(X[0:9])
     print("")
 
-    # Compute the linkage matrix using the scipy ward() method
-    Z = ward(X)
+    # Compute the linkage matrix using the scipy linkage() method
+    Z = linkage(X, "ward")
 
     # Perform standard clustering by cutting the tree at a certain level (where the nr of clusters is set to 20)
     standard_cut_cluster_id = cut_tree(Z, n_clusters=[20])
