@@ -1,12 +1,12 @@
 Metadata-Version: 2.1
 Name: scipy-cut-tree-balanced
-Version: 0.1
+Version: 1.0
 Summary: Python function that performs a balanced cut tree of a SciPy linkage matrix
 Home-page: https://github.com/vreyespue/scipy_cut_tree_balanced
 Author: Vicente Reyes-Puerta
 Author-email: vr.github@outlook.com
 License: UNKNOWN
-Download-URL: https://github.com/vreyespue/scipy_cut_tree_balanced/archive/v_0_1.tar.gz
+Download-URL: https://github.com/vreyespue/scipy_cut_tree_balanced/archive/v_1_0.tar.gz
 Description: # Balanced Cut Tree Method for Hierarchical Clustering
         
         This repo contains a small Python function that performs a balanced cut tree of a SciPy linkage matrix built using any linkage method (e.g. 'ward'). It builds upon the SciPy and NumPy libraries.
@@ -80,9 +80,7 @@ Description: # Balanced Cut Tree Method for Hierarchical Clustering
         Count of data samples per cluster: mean = 5, max = 48, min = 1, std = 10.17
         ```
         
-        The following figure illustrates visually the resulting clustering by using the standard tree cut. The black line shows the height at which the cut (i.e. pruning) is performed (which is identical for all clusters). The resulting cluster IDs are depicted within the black squares (i.e. numbers in white represent the obtained cluster IDs). As result, the cluster ID 0 contains 48 elements (almost half of the data samples), an issue which we try to address with our proposed method.
         
-        ![Dendrogram Standard Cut)](doc/dendrogram_1_standard_cut.png?raw=true "Dendrogram Standard Cut")
         
         A more balanced clustering is then attempted by using the balanced ward tree method, in which the maximum number of data samples within each cluster is set to 10.
         
@@ -96,7 +94,7 @@ Description: # Balanced Cut Tree Method for Hierarchical Clustering
         Type of the balanced clustering result (id): <class 'numpy.ndarray'>
         Shape of the balanced clustering result (one cluster id per data sample): (100,)
         First 10 rows of the balanced clustering result (one cluster id per sample):
-        [19  4 10 12 20 12 14  9 15  2] ...
+        [18  3  9 11 19 11 13  8 14  1] ...
         
         Type of the balanced clustering result (level): <class 'numpy.ndarray'>
         Shape of the balanced clustering result (level) (one array per data sample): (100,)
@@ -112,15 +110,13 @@ Description: # Balanced Cut Tree Method for Hierarchical Clustering
         
         Total number of resulting clusters = 20
         For each resulting cluster: Cluster ID
-        [ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20]
+        [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
         For each resulting cluster: Count of data samples
         [ 2 10  2  7  7 10  6  8  8  3  4  4  3  3  3  1  4  3  4  8]
         Count of data samples per cluster: mean = 5, max = 10, min = 1, std = 2.68
         ```
         
-        The following figure illustrates visually the resulting balanced clustering. Again, the resulting cluster IDs are depicted within the black squares (i.e. numbers in white represent the obtained cluster IDs). Now the tree level at which the clusters are selected (i.e. pruned) is different for each cluster ID, since the cluster search method is not only driven by the heigth (i.e. distance between clusters), but also by the number of samples contained within the clusters. Note for instance that cluster ID 1 is smaller (2 data samples) than cluster ID 17 (4 data samples), although the heigth at which it was pruned is much higher. As result, all clusters contain less or equal than a number of specific data samples (in this case 10), and therefore their size is less variable.
         
-        ![Dendrogram Balanced Cut)](doc/dendrogram_2_balanced_cut.png?raw=true "Dendrogram Balanced Cut")
         
         In conclusion, here we describe and implement a method which generates (for a similar number of resulting clusters) a more balanced outcome, i.e. building clusters of less variable size.
         
