@@ -73,7 +73,7 @@ Count of data samples per cluster: mean = 5, max = 48, min = 1, std = 10.17
 
 The following figure illustrates visually the resulting clustering by using the standard tree cut. The black line shows the height at which the cut (i.e. pruning) is performed (which is identical for all clusters). The resulting cluster IDs are depicted within the black squares (i.e. numbers in white represent the obtained cluster IDs). As result, the cluster ID 0 contains 48 elements (almost half of the data samples), an issue which we try to address with our proposed method.
 
-![Dendrogram Standard Cut)](doc/dendrogram_1_standard_cut.png?raw=true "Dendrogram Standard Cut")
+![Dendrogram Standard Cut](doc/dendrogram_1_standard_cut.png?raw=true "Dendrogram Standard Cut")
 
 A more balanced clustering is then attempted by using the balanced ward tree method, in which the maximum number of data samples within each cluster is set to 10.
 
@@ -111,7 +111,7 @@ Count of data samples per cluster: mean = 5, max = 10, min = 1, std = 2.68
 
 The following figure illustrates visually the resulting balanced clustering. Again, the resulting cluster IDs are depicted within the black squares (i.e. numbers in white represent the obtained cluster IDs). Now the tree level at which the clusters are selected (i.e. pruned) is different for each cluster ID, since the cluster search method is not only driven by the heigth (i.e. distance between clusters), but also by the number of samples contained within the clusters. Note for instance that cluster ID 1 is smaller (2 data samples) than cluster ID 17 (4 data samples), although the heigth at which it was pruned is much higher. As result, all clusters contain less or equal than a number of specific data samples (in this case 10), and therefore their size is less variable.
 
-![Dendrogram Balanced Cut)](doc/dendrogram_2_balanced_cut.png?raw=true "Dendrogram Balanced Cut")
+![Dendrogram Balanced Cut](doc/dendrogram_2_balanced_cut.png?raw=true "Dendrogram Balanced Cut")
 
 In conclusion, here we describe and implement a method which generates (for a similar number of resulting clusters) a more balanced outcome, i.e. building clusters of less variable size.
 

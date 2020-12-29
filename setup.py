@@ -1,7 +1,12 @@
 import setuptools
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+with open("README.md", "r", encoding="utf-8") as input_file:
+    long_description = ""
+    for line in input_file:
+        if (not line.startswith("The following figure")) and (
+            not line.startswith("![Dendrogram")
+        ):
+            long_description += line
 
 setuptools.setup(
     name="scipy_cut_tree_balanced",
