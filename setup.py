@@ -10,14 +10,14 @@ with open("README.md", "r", encoding="utf-8") as input_file:
 
 setuptools.setup(
     name="scipy_cut_tree_balanced",
-    version="1.0",
+    version="1.1",
     author="Vicente Reyes-Puerta",
     author_email="vr.github@outlook.com",
     description="Python function that performs a balanced cut tree of a SciPy linkage matrix",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/vreyespue/scipy_cut_tree_balanced",
-    download_url="https://github.com/vreyespue/scipy_cut_tree_balanced/archive/v_1_0.tar.gz",
+    download_url="https://github.com/vreyespue/scipy_cut_tree_balanced/archive/v_1_1.tar.gz",
     packages=setuptools.find_packages(),
     install_requires=["scipy", "numpy", "pytest"],
     classifiers=[
