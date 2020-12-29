@@ -145,6 +145,29 @@ The following figure illustrates visually the resulting balanced clustering. Aga
 
 In conclusion, here we describe and implement a method which generates (for a similar number of resulting clusters) a more balanced outcome, i.e. building clusters of less variable size.
 
+# Citation in Papers
+
+The DOI `10.5281/zenodo.4399514` (hosted by [Zenodo](https://zenodo.org)) can be used in order to cite this software in academic papers.
+
+[![DOI](https://zenodo.org/badge/196588906.svg)](https://zenodo.org/badge/latestdoi/196588906)
+
+The related BibTeX export is the following.
+
+```
+@software{vicente_reyes_puerta_2020_4399514,
+  author       = {Vicente Reyes-Puerta},
+  title        = {{vreyespue/scipy\_cut\_tree\_balanced: Python function
+                   that performs a balanced cut tree of a SciPy
+                   linkage matrix}},
+  month        = dec,
+  year         = 2020,
+  publisher    = {Zenodo},
+  version      = {1.1},
+  doi          = {10.5281/zenodo.4399514},
+  url          = {https://doi.org/10.5281/zenodo.4399514}
+}
+```
+
 # Related Work
 
 There are several implemented methods following the same or a similar idea, i.e. performing a cut tree in which the resulting clusters are at different tree levels.
