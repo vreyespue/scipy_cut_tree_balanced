@@ -87,7 +87,7 @@ We get two results from the new function: (1) a list of integers containing for 
 Type of the balanced clustering result (id): <class 'numpy.ndarray'>
 Shape of the balanced clustering result (one cluster id per data sample): (100,)
 First 10 rows of the balanced clustering result (one cluster id per sample):
-[19  4 10 12 20 12 14  9 15  2] ...
+[18  3  9 11 19 11 13  8 14  1] ...
 
 Type of the balanced clustering result (level): <class 'numpy.ndarray'>
 Shape of the balanced clustering result (level) (one array per data sample): (100,)
@@ -103,7 +103,7 @@ First 10 rows of the balanced clustering result (level) (one array per sample):
 
 Total number of resulting clusters = 20
 For each resulting cluster: Cluster ID
-[ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20]
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
 For each resulting cluster: Count of data samples
 [ 2 10  2  7  7 10  6  8  8  3  4  4  3  3  3  1  4  3  4  8]
 Count of data samples per cluster: mean = 5, max = 10, min = 1, std = 2.68
