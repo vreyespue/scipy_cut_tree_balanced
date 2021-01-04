@@ -1,4 +1,4 @@
-# A balanced tree cutting method for hierarchical clustering
+# A balanced tree cut method for hierarchical clustering
 
 This repo (and [PyPI package](https://pypi.org/project/scipy-cut-tree-balanced/)) contains a Python function that performs a balanced cut tree of a SciPy linkage matrix built using any linkage method (e.g. 'ward'). It builds upon the SciPy and NumPy libraries.
 
