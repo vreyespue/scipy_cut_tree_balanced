@@ -1,12 +1,12 @@
 # A balanced tree cut method for hierarchical clustering
 
-This repo (and [PyPI package](https://pypi.org/project/scipy-cut-tree-balanced/)) contains a Python function that performs a balanced cut tree of a SciPy linkage matrix built using any linkage method (e.g. 'ward'). It builds upon the SciPy and NumPy libraries.
+This repo (and [PyPI package](https://pypi.org/project/scipy-cut-tree-balanced/)) contains a Python function that performs a balanced cut-tree of a SciPy linkage matrix built using any linkage method (e.g. 'ward'). It builds upon the SciPy and NumPy libraries.
 
 The initial problem was the following: if you perform a standard cut on a tree (i.e. the result from a hierarchical clustering), probably you will end up having a few big clusters (where the number of data samples is high), and many small clusters (each containing very few data samples). Thus, the resulting clustering is unbalanced, i.e. it contains clusters of very variable size.
 
 The proposed function looks recursively along the hierarchical tree, from the root (single cluster gathering all the samples) to the leaves (i.e. the clusters with only one sample), retrieving the biggest possible clusters containing a number of samples lower than a given maximum. In this way, if a cluster at a specific tree level contains a number of samples higher than the given maximum, it is ignored and its offspring (smaller) sub-clusters are taken into consideration. If the cluster contains a number of samples lower than the given maximum, it is taken as result and its offspring sub-clusters not further processed.
 
-Since all output clusters contain no more than a given maximum number of samples, the resulting clustering is considered to be more balanced than a standard cut tree. Note however that the number of samples per cluster might still have a considerable variability, since the splitting of a big cluster can result in sub-clusters with very variable number of samples. This variability should be smaller as the given maximum of samples per cluster is closer to 1 (being the variability equal to 0 when the maximum is at its limit, i.e. 1).
+Since all output clusters contain no more than a given maximum number of samples, the resulting clustering is considered to be more balanced than a standard cut-tree. Note however that the number of samples per cluster might still have a considerable variability, since the splitting of a big cluster can result in sub-clusters with very variable number of samples. This variability should be smaller as the given maximum of samples per cluster is closer to 1 (being the variability equal to 0 when the maximum is at its limit, i.e. 1).
 
 The function returns two results:
 
@@ -40,7 +40,7 @@ X = gamma.rvs(0.1, size=400).reshape((100, 4))
 # Compute the linkage matrix using the scipy linkage() method
 Z = linkage(X, 'ward')
 
-# Perform a balanced cut tree of the linkage matrix
+# Perform a balanced cut-tree of the linkage matrix
 [balanced_cut_cluster_id, balanced_cut_cluster_level] = cut_tree_balanced(Z, 10)
 
 print("First 10 rows of the balanced clustering result (one cluster id per sample):")
@@ -49,7 +49,7 @@ print(str(balanced_cut_cluster_id[0:10]) + " ...")
 
 # Example Script
 
-By running `example.py` you will get more elaborate printed outputs similar to the following. Here we perform a more detailed comparison between a standard and a balanced cut tree.
+By running `example.py` you will get more elaborate printed outputs similar to the following. Here we perform a more detailed comparison between a standard and a balanced cut-tree.
 
 ```
 $ python3 example.py
@@ -79,7 +79,7 @@ First 10 rows of the input data:
  [1.14654357e-03 1.12808821e-02 1.61202749e-04 1.56459197e-11]]
 ```
 
-Next, the linkage matrix is computed by using the ward method, and a standard cut tree is performed (with a specific number of output clusters = 20).
+Next, the linkage matrix is computed by using the ward method, and a standard cut-tree is performed (with a specific number of output clusters = 20).
 
 ```
     Z = linkage(X, 'ward')
@@ -101,7 +101,7 @@ For each resulting cluster: Count of data samples
 Count of data samples per cluster: mean = 5, max = 48, min = 1, std = 10.17
 ```
 
-The following figure illustrates visually the resulting clustering by using the standard cut tree. The black line shows the height at which the cut (i.e. pruning) is performed (which is identical for all clusters). The resulting cluster IDs are depicted within the black squares (i.e. numbers in white represent the obtained cluster IDs). As result, the cluster ID 0 contains 48 elements (almost half of the data samples), an issue which we try to address with our proposed method.
+The following figure illustrates visually the resulting clustering by using the standard cut-tree. The black line shows the height at which the cut (i.e. pruning) is performed (which is identical for all clusters). The resulting cluster IDs are depicted within the black squares (i.e. numbers in white represent the obtained cluster IDs). As result, the cluster ID 0 contains 48 elements (almost half of the data samples), an issue which we try to address with our proposed method.
 
 ![Dendrogram Standard Cut](doc/dendrogram_1_standard_cut.png?raw=true "Dendrogram Standard Cut")
 
@@ -169,7 +169,7 @@ The related BibTeX export is the following.
 
 # Related Work
 
-There are several implemented methods following the same or a similar idea, i.e. performing a cut tree in which the resulting clusters are at different tree levels.
+There are several implemented methods following the same or a similar idea, i.e. performing a cut-tree in which the resulting clusters are at different tree levels.
 
 - Implementation of the same method within the [scikit-network package](https://scikit-network.readthedocs.io/en/latest/reference/hierarchy.html#sknetwork.hierarchy.cut_balanced) (see source code of the [cut_balanced function](https://scikit-network.readthedocs.io/en/latest/_modules/sknetwork/hierarchy/postprocess.html#cut_balanced)).
 - The CRAN R package [dynamicTreeCut](https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/BranchCutting/) (see GitHub [repo](https://github.com/cran/dynamicTreeCut) and the [paper](https://academic.oup.com/bioinformatics/article/24/5/719/200751)) implements novel dynamic branch cutting methods for detecting clusters in a dendrogram depending on their shape.
