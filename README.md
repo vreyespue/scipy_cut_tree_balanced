@@ -145,6 +145,24 @@ The following figure illustrates visually the resulting balanced clustering. Aga
 
 In conclusion, here we describe and implement a method which generates (for a similar number of resulting clusters) a more balanced outcome, i.e. building clusters of less variable size.
 
+# Searching for Optimal Parameter Max Cluster Size
+
+A valid question is whether it is possible to perform some sort of hyperparameter optimization on `max_cluster_size`. This is very much related to the issue of [determining the number of clusters](https://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set) in a dataset.
+
+By running `param_search.py` you can perform a parameter search over two typical test datasets.
+
+```
+$ python3 param_search.py
+```
+
+To this purpose, the [silhouette metric](<https://en.wikipedia.org/wiki/Silhouette_(clustering)>) is used in order to quantify the fitness of the clustering configuration. In brief, it measures how similar a data sample is to its own cluster (cohesion) compared to other clusters (separation). The silhouette ranges from −1 to +1, where a high value indicates that the object is well matched to its own cluster.
+
+For the [Iris flower dataset](https://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html) (see also [function sklearn.datasets.load_iris](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html)), we find that a `max_cluster_size` of 125 (resulting in 2 clusters) achieves the highest silhouette value (~0.72). This is the expected result, since the data set only contains two clusters with rather obvious separation. One of the clusters contains Iris setosa, while the other cluster contains both Iris virginica and Iris versicolor and is not separable without the species information (see the [wikipedia site](https://en.wikipedia.org/wiki/Iris_flower_data_set) for further details).
+
+For the [Digits dataset](https://scikit-learn.org/stable/auto_examples/datasets/plot_digits_last_image.html) (see also [function sklearn.datasets.load_digits](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html)), we find that a `max_cluster_size` of 300 (resulting in 10 clusters) achieves the highest silhouette value (~0.18). This is as well the expected result, since images of 10 different hand-written digits are contained in this dataset.
+
+In all, these outcomes confirm that a simple iterative parameter search algorigthm can be used in order to find the optimal value for `max_cluster_size`, and that the balanced tree cut method produces valid clustering results.
+
 # Citation in Papers
 
 The DOI `10.5281/zenodo.4399514` (hosted by [Zenodo](https://zenodo.org)) can be used in order to cite this software in academic papers.
