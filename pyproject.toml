@@ -5,7 +5,7 @@ description = "Python function that performs a balanced cut tree of a SciPy link
 authors = ["Vicente Reyes <vr.github@outlook.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.8"
 scipy = "*"
 numpy = "*"
 pytest = "*"
