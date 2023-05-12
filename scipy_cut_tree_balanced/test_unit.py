@@ -1,5 +1,4 @@
 import numpy as np
-import pytest
 import scipy
 from scipy_cut_tree_balanced import cut_tree_balanced
 from numpy.testing import assert_equal, assert_

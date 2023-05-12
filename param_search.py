@@ -135,7 +135,6 @@ def comp_silh_for_max_cluster_sizes(
     linkage_matrix = linkage(data_input, linkage_method)
 
     for max_cluster_size in list_max_cluster_sizes:
-
         # Perform a balanced cut tree of the linkage matrix
         [cluster_indices, _] = cut_tree_balanced(linkage_matrix, max_cluster_size)
         cluster_values, cluster_counts = np.unique(cluster_indices, return_counts=True)
@@ -222,7 +221,6 @@ def process_data_bunch_max_cluster_sizes(
 
 
 if __name__ == "__main__":
-
     if const_bool_print_info:
         print("\ndataset iris\n")
     df_output_iris = process_data_bunch_max_cluster_sizes(
