@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "scipy_cut_tree_balanced"
-version = "1.1"
+version = "1.2"
 description = "Python function that performs a balanced cut tree of a SciPy linkage matrix"
 authors = ["Vicente Reyes <vr.github@outlook.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.6"
 scipy = "*"
 numpy = "*"
 pytest = "*"
