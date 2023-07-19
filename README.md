@@ -111,7 +111,7 @@ A more balanced clustering is then attempted by using the balanced ward tree met
     [balanced_cut_cluster_id, balanced_cut_cluster_level] = cut_tree_balanced(Z, 10)
 ```
 
-We get two results from the new function: (1) a list of integers containing for each input sample its corresponding cluster id, and (2) a list of strings containing for each input sample its corresponding cluster tree level (see above section for further information). Note that the ID of the resulting clusters go again from 0 to 19 in this case, i.e. the number of resulting clusters (20) is identical to the previous one. Importantly, the resulting clustering is more balanced than the standard one (for an equal number of resulting clusters), since the range of cluster sizes goes from 1 to 10, showing a standard deviation of 2.68 data samples.
+We get two results from the new function: (1) a list of integers containing for each input sample its corresponding cluster id, and (2) a list containing for each input sample its corresponding cluster tree level (represented by a sequence of 0s and 1s, see above first section for further information). Note that the ID of the resulting clusters go again from 0 to 19 in this case, i.e. the number of resulting clusters (20) is identical to the previous one. Importantly, the resulting clustering is more balanced than the standard one (for an equal number of resulting clusters), since the range of cluster sizes goes from 1 to 10, showing a standard deviation of 2.68 data samples.
 
 ```
 Type of the balanced clustering result (id): <class 'numpy.ndarray'>
@@ -123,13 +123,15 @@ Type of the balanced clustering result (level): <class 'numpy.ndarray'>
 Shape of the balanced clustering result (level) (one array per data sample): (100,)
 First 10 rows of the balanced clustering result (level) (one array per sample):
 [array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
- array([0, 0, 0, 1]) array([0, 0, 0, 0, 0, 0, 0, 0, 1])
+ array([0, 0, 0, 1])
+ array([0, 0, 0, 0, 0, 0, 0, 0, 1])
  array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
  array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
  array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
  array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
  array([0, 0, 0, 0, 0, 0, 0, 1])
- array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]) array([0, 0, 1, 0])] ...
+ array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
+ array([0, 0, 1, 0])] ...
 
 Total number of resulting clusters = 20
 For each resulting cluster: Cluster ID
