@@ -147,6 +147,8 @@ The following figure illustrates visually the resulting balanced clustering. Aga
 
 In conclusion, here we describe and implement a method which generates (for a similar number of resulting clusters) a more balanced outcome, i.e. building clusters of less variable size.
 
+Note: the function `dendogram` from Scipy was used in order to generate the dendrograms shown in the exemplary figures. Cluster labels were drawn by choosing specific `(x,y)` coordinates, and tested for correctness in an iterative manner. Please note that there is no function available to plot the resulting dendograms and clustering labels automatically.
+
 # Searching for Optimal Parameter Max Cluster Size
 
 A valid question is whether it is possible to perform some sort of hyperparameter optimization on `max_cluster_size`. This is very much related to the issue of [determining the number of clusters](https://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set) in a dataset.
